@@ -1,15 +1,27 @@
 const express = require("express")
-const upload = require("../cloudinary/multer")
-
-
+const cloudinaryConnect = require("../cloudinary/utils/cloudinaryConfig")
+const uploadImage = require("../cloudinary/multer")
+const userImageSchema = require("../schema/schema")
 
 const router = express.Router()
  
-router.post("/",upload.single("fileUpload") , async(req, res) => {
+router.post("/",uploadImage.single("image") , async(req, res) => {
     try {
-        const result = await cloudinary.uploader.upload(reg.file.path)
-        res.json(result)
+        const uplaodResponse = await cloudinaryConnect.uploader.upload(req.file.path)
+        if (uplaodResponse) {
+            const newUser = new userImageSchema({
+                name: req.body.name,
+                img: uplaodResponse.secure_url,
+                id: uplaodResponse.public_id
+            })
+            const savedUser = await newUser.save()
+            res.json(
+             savedUser
+            )
+            
+        }
     } catch (error) {
         console.log(error.message)
     }
 })
+module.exports = router

@@ -4,14 +4,15 @@ const userSchema = new mongoose.Schema({
     name: {
        type:String
     },
-    avater: {
+    img: {
         type:String
     },
-    cloudinary: {
+    id: {
         type:String
-    }
+    },
+ 
 })
 
-const imageSchema = mongoose.Model("cludinary_crud", userSchema)
+const userImageSchema = mongoose.model("cludinary_crud", userSchema)
 
-module.exports = imageSchema
+module.exports = userImageSchema

@@ -18,7 +18,7 @@ const Port = process.env.config | 3001
 app.use(express.json())
 
 // routes
-app.use("/", uplaodRoutes)
+app.use("/user", uplaodRoutes)
 const dbAndServerFunction = async () => {
     try {
       // connecting to mongodb //

@@ -1,16 +1,20 @@
 const multer = require("multer")
 const path = require("path")
 
-const multerSetting = multer({
+module.exports=  multer({
     storage: multer.diskStorage({}),
     fileFilter: (req, file, cb) => {
         const ext = path.extname(file.originalname)
+        
         if (ext !== ".jpeg" && ext !== ".jpg" && ext !== "png") {
-            cb(new Err("File format not supported"), false)
+           
+            cb(new Error("File format not supported"), false)
+          
             return
         }
-        cb(null,true)
+      
+        cb(null, true)
+       
     }
 })
 
-module.exports = multerSetting
