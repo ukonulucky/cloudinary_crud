@@ -9,8 +9,7 @@ const userSchema = new mongoose.Schema({
     },
     id: {
         type:String
-    },
- 
+    }
 })
 
 const userImageSchema = mongoose.model("cludinary_crud", userSchema)
